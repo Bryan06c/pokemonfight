@@ -69,11 +69,11 @@ Joueur 2 invoque : {pokemon[i2].nom}
 """)
 
 while pokemon[i1].sante > 0 and pokemon[i2].sante > 0:
-    salameche.attaquer(pokemon[i2])
+    pokemon[i1].attaquer(pokemon[i2])
     state(pokemon)
     
-    if pokemon[i1].sante > 0:
-        pokemon[i1].attaquer(pokemon[i2])
+    if pokemon[i2].sante > 0:
+        pokemon[i2].attaquer(pokemon[i1])
         state(pokemon)
 
 
