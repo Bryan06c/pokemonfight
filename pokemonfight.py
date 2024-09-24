@@ -1,53 +1,87 @@
 import random
 
-print(f"Un combat se lance entre 2 dresseurs : ")
-print(f"\nJoueur 1 invoque : Salamèche ")
-print(f"Joueur 2 invoque : Bulbizarre ")
-
 class PokemonFeu:
     def __init__(self, nom):
         self.nom = nom
         self.sante = 100
 
-    def attaquer(self, pokemon_plante):
-        print(f"\n{self.nom} attaque {pokemon_plante.nom} !")
+    def attaquer(self, pokemon):
+        print(f"\n{self.nom} attaque {pokemon.nom} !")
         degats = random.randint(15, 20)
-        print(f"{self.nom} fait un coup critique !! Les dégâts sont multipliés par 2. \n{pokemon_plante.nom} perd {degats * 2} points de vie!!")
-        pokemon_plante.sante -= degats * 2
-        if pokemon_plante.sante < 0:
-            pokemon_plante.sante = 0  
-        print(f"Il reste {pokemon_plante.sante} points de vie à {pokemon_plante.nom}!")
 
+        if pokemon.nom == "Bulbizarre" or pokemon.nom == "Florizarre":
+            print(f"{self.nom} fait un coup critique !! Les dégâts sont multipliés par 2. \n{pokemon.nom} perd {degats * 2} points de vie!!")
+            pokemon.sante -= degats * 2
+        else:
+            print(f"L'attaque de {self.nom} n'est pas très efficace. \n{pokemon.nom} perd {degats} points de vie!!")
+            pokemon.sante -= degats
+
+        if pokemon.sante < 0:
+            pokemon.sante = 0  
+        print(f"Il reste {pokemon.sante} points de vie à {pokemon.nom}!")
 
 class PokemonPlante:
     def __init__(self, nom):
         self.nom = nom
         self.sante = 100
 
-    def attaquer(self, pokemon_feu):
-        print(f"\n{self.nom} attaque {pokemon_feu.nom} !")
+    def attaquer(self, pokemon):
+        print(f"\n{self.nom} attaque {pokemon.nom} !")
         degats = random.randint(15, 20)
-        print(f"L'attaque de {self.nom} n'est pas très efficace. \n{pokemon_feu.nom} perd {degats} points de vie!!")
-        pokemon_feu.sante -= degats
-        if pokemon_feu.sante < 0:
-            pokemon_feu.sante = 0  
-        print(f"Il reste {pokemon_feu.sante} points de vie à {pokemon_feu.nom}!")
+        
+        print(f"L'attaque de {self.nom} n'est pas très efficace. \n{pokemon.nom} perd {degats} points de vie!!")
+        pokemon.sante -= degats
+
+        if pokemon.sante < 0:
+            pokemon.sante = 0  
+        print(f"Il reste {pokemon.sante} points de vie à {pokemon.nom}!")
 
 
 salameche = PokemonFeu("Salamèche")
+dracofeu = PokemonFeu("Dracofeu")
 bulbizarre = PokemonPlante("Bulbizarre")
-expérience = random.randint(80,123)
+florizarre = PokemonPlante("Florizarre")
 
-while bulbizarre.sante > 0 and salameche.sante > 0:
-    salameche.attaquer(bulbizarre)
+pokemon = []
+
+pokemon.append(salameche)
+pokemon.append(dracofeu)
+pokemon.append(bulbizarre)
+pokemon.append(florizarre)
+
+def state(liste_de_pokemon):
+    for pokemon in liste_de_pokemon:
+        print(pokemon.nom, pokemon.sante)
+
+experience = random.randint(80,123)
+
+i1 = random.randint(0,3)
+
+i2 = random.randint(0,3)
+
+# Le jeu commence ici
+
+print(f"""
+Un combat se lance entre 2 dresseurs :
+
+Joueur 1 invoque : {pokemon[i1].nom}
+Joueur 2 invoque : {pokemon[i2].nom}
+""")
+
+while pokemon[i1].sante > 0 and pokemon[i2].sante > 0:
+    salameche.attaquer(pokemon[i2])
+    state(pokemon)
     
-    if bulbizarre.sante > 0: 
-        bulbizarre.attaquer(salameche)
+    if pokemon[i1].sante > 0:
+        pokemon[i1].attaquer(pokemon[i2])
+        state(pokemon)
 
 
-if bulbizarre.sante == 0:
-    print(f"{bulbizarre.nom} est KO ! {salameche.nom} remporte le combat !")
+if pokemon[i1].sante == 0:
+    print(f"{pokemon[i1].nom} est KO ! {pokemon[i2].nom} remporte le combat !")
+    print(f"\n{pokemon[i2].nom} remporte {experience} points d'expérience !")
 else:
-    print(f"{salameche.nom} est KO ! {bulbizarre.nom} remporte le combat !")
+    print(f"{pokemon[i2].nom} est KO ! {pokemon[i1].nom} remporte le combat !")
+    print(f"\n{pokemon[i1].nom} remporte {experience} points d'expérience !")
 
-print(f"\n{salameche.nom} remporte {expérience} points d'expérience !")
+
