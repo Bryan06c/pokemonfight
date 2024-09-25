@@ -21,6 +21,29 @@ pokemon = [
     PokemonEau("Tortank")
 ]
 
+# def fight():
+#     while pokemon[i1].sante > 0 and pokemon[i2].sante > 0 or pokemon[i1].sante > 0 and pokemon[i3].sante > 0 or pokemon[i2].sante > 0 and pokemon[i3].sante > 0:
+#         if pokemon[i1].sante > 0 and pokemon[i2].sante > 0:
+#             pokemon[i1].attaquer(pokemon[i2])
+#         elif pokemon[i1].sante > 0 and pokemon[i2].sante < 0:
+#             pokemon[i1].attaquer(pokemon[i3])
+#         else:
+#             pass
+
+#         if pokemon[i2].sante > 0 and pokemon[i3].sante > 0:
+#             pokemon[i2].attaquer(pokemon[i3])
+#         elif pokemon[i2].sante > 0 and pokemon[i3].sante < 0:
+#             pokemon[i2].attaquer(pokemon[i1])
+#         else:
+#             pass
+
+#         if pokemon[i3].sante > 0 and pokemon[i1].sante > 0:
+#             pokemon[i3].attaquer(pokemon[i1])
+#         elif pokemon[i3].sante > 0 and pokemon[i1].sante < 0:
+#             pokemon[i3].attaquer(pokemon[i2])
+#         else:
+#             pass
+        
 def fight():
     
     while pokemon[i1].sante > 0 and pokemon[i2].sante > 0 or pokemon[i1].sante > 0 and pokemon[i3].sante > 0 or pokemon[i2].sante > 0 and pokemon[i3].sante > 0:

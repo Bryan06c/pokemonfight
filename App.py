@@ -16,3 +16,4 @@ Joueur 3 invoque : {pokemon[i3].nom}
 """)
 
 fight()
+
