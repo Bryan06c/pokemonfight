@@ -5,9 +5,9 @@ from utils.custom_logs import RED, GREEN, BLUE, RESET
 degats = random.randint(15, 20)
 
 class Pokemon:
-    def __init__(self,nom):
+    def __init__(self,nom,sante):
         self.nom = nom
-        self.sante = 100
+        self.sante = sante
 
     def attaquer(self, pokemon):
         print(f"\n{self.nom} attaque {pokemon.nom} !")
